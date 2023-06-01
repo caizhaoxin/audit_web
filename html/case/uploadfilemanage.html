@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="../../res/css/bootstrap.css">
+  <script src="../../res/js/angular.min.js"></script>
+  <script type="text/javascript" src="../../res/js/angular-ui-router.min.js"></script>
+  <link rel="stylesheet" href="../../res/layui/css/layui.css">
+  <link rel="stylesheet" href="../../res/css/global.css">
+  <link rel="stylesheet" href="../../res/css/styles.css">
+  <link rel="stylesheet" href="../../res/css/czx.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      background-size: 100% 100%;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table tr th {
+      text-align: center;
+    }
+
+    table tr th:nth-child(3) {
+      text-align: left;
+    }
+
+    table tr {
+      height: 40px;
+      border-bottom: 1px solid #d4d4d7;
+    }
+
+    table tr td:last-child button {
+      width: 30%;
+      height: 80%;
+      background: #C9302C;
+      border-radius: 5px;
+      border: 0px;
+      color: #fff;
+      outline: none;
+    }
+
+    table tr td {
+      text-align: center;
+      color: #151515;
+      font-family: "微软雅黑";
+      /*border: 1px solid #d4d4d7;*/
+      padding-left: 5px;
+      font-size: 13px;
+      height: 30px;
+    }
+
+    table tr td:nth-child(2) img {
+      height: 100%;
+    }
+
+    table tr td:nth-child(3) {
+      text-align: left;
+    }
+
+    table tr:nth-child(even) {
+      background: #f4f4f4;
+    }
+
+    table tr td:nth-child(4) button {
+      width: 25px;
+      background: #C9302C;
+      border: 1px solid #C9302C;
+      color: #fff;
+      height: 70%;
+    }
+
+    table tr td:nth-child(4) input {
+      width: 60px;
+      height: 69%;
+      border: 1px solid #D4D4D7;
+      margin: 0px 5px;
+      text-align: center;
+    }
+
+    .fcred {
+      background: #EBEBE4 !important;
+    }
+  </style>
+</head>
+
+</body>
+
+<body ng-app="app" ng-controller="cont">
+  <div>
+    <div class="fly-header layui-bg-black">
+      <div class="layui-container">
+        <div>
+          <div class="fly-header layui-bg-black">
+            <div class="layui-container">
+              <ul class="layui-nav">
+                <li class="layui-nav-item">
+                  <a href="../index.html">
+                    <i class="iconfont icon-jiaoliu"></i>
+                    &nbsp;HOMEPAGE
+                  </a>
+                </li>
+                <li class="layui-nav-item layui-this">
+                  <a href="uploadfilemanage.html">
+                    <i class="iconfont icon-iconmingxinganli"></i>
+                    &nbsp;RECENT ANALYSIS</a>
+                </li>
+                <li class="layui-nav-item">
+                  <a href="result.html">
+                    <i class="iconfont icon-ui"></i>
+                    &nbsp;RESULT
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <table>
+      <tr>
+        <th>APP</th>
+        <th>FILE</th>
+        <th>HASH</th>
+        <th>UPLOAD DATE</th>
+        <th>STATUS</th>
+      </tr>
+      <tr ng-repeat="item in td |filter:abc" ng-class="{'fcred':item.math==0}">
+        <td>
+          <div>
+            <span></span></br>
+            <img src="../../res/images/icon/{{item.package_name}}.png" style="width: 50px;"></br>
+            <span><b>{{item.app_name}}</b></span></br>
+            <span>{{item.package_name}}</span></br>
+            <span>{{item.version}}</span></br>
+            <span></span></br>
+          </div>
+        </td>
+        <td>{{item.app_name}}</td>
+        <td>{{item.hash}}</td>
+        <td>{{item.date}}</td>
+        <td ng-style="item.status === 'AUDITTING' ? { 'color': 'red', 'font-weight': 'bold'} : {'color': 'green', 'font-weight': 'bold'}">{{item.status}}</td>
+    </table>
+    <script>
+      var myApp = angular.module("app", ["ui.router"]);
+      myApp.controller('cont', function ($scope, $http, $state) {
+        $scope.td = [
+          { id: '0', package_name: "com.dragon.read", version: "5.4.7.32", app_name: "番茄免费小说", hash: "9rNb290A7f", date: "May 30, 2023, 3:33 a.m.", status: "AUDITTING" },
+          { id: '1', package_name: "com.f100.android", version: "5.4.0", app_name: "幸福里", hash: "R08dNpIwEC", date: "May 30, 2023, 3:33 a.m.", status: "AUDITTING" },
+          { id: '2', package_name: "com.gorgeous.lite", version: "4.6.0", app_name: "轻颜相机", hash: "s7f8rfgugjtn", date: "May 30, 2023, 3:33 a.m.", status: "FINISH" },
+        ]
+      })
+    </script>
+</body>
+
+</html>

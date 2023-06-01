@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="UTF-8">
+<title>应用审计平台</title>
+<link rel="stylesheet" href="../res/layui/css/layui.css">
+<link rel="stylesheet" href="../res/css/global.css">
+<link rel="stylesheet" href="../res/css/styles.css">
+<link rel="stylesheet" href="../res/css/czx.css">
+<script src="../res/layui/layui.js"></script>
+<script type="text/javascript" src="../res/js/jquery-1.9.1.min.js"></script>
+<style>
+  .progress {
+      /*width: 1000px;*/
+      width: 100%;
+      height: 20px;
+      border: 1px solid #000;
+      margin: 10px;
+  }
+
+  .progress > div {
+      width: 0%;
+      height: 100%;
+      background-color: green;
+  }
+</style>
+<style type="text/css">
+  .out{
+      display: flex;
+      flex-direction: column;
+  }
+  .in{
+      align-self: center;
+  }
+  .in-text {
+    align-self: center;
+    color: aliceblue;
+    font-size: 15px;
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ 
+<link rel="stylesheet" href="../res/css/upload_style_btn.css">
+
+</head>
+<body>
+<div style="z-index:-1"  >
+    <canvas id="canvas1"></canvas>
+</div>
+
+  <script src="../res/js/particles.js"></script>
+  <div>
+    <div class="fly-header layui-bg-black">
+      <div class="layui-container">
+        <ul class="layui-nav">
+          <li class="layui-nav-item layui-this">
+              <a href="index.html">
+                  <i class="iconfont icon-jiaoliu"></i>
+                  &nbsp;HOMEPAGE
+              </a>
+          </li>
+          <li class="layui-nav-item">
+              <a href="case/uploadfilemanage.html">
+                  <i class="iconfont icon-iconmingxinganli"></i>
+                  &nbsp;RECENT ANALYSIS</a>
+          </li>
+          <li class="layui-nav-item">
+              <a href="case/result.html">
+                  <i class="iconfont icon-ui"></i>
+                  &nbsp;RESULT
+              </a>
+          </li>
+      </ul>
+      </div>
+    </div>
+  </div>
+
+<div class="out">
+    <button id="upload" class="upload-btn in" type="button">
+        <svg class="upload-btn-border" xmlns="http://www.w3.org/2000/svg" width="120px" height="50px" viewBox="0 0 120 50" role="presentation">
+            <rect x="-2" y="-2" width="124" height="54" rx="27" ry="27" fill="none" stroke="#000" stroke-width="4" stroke-dasharray="0 310" opacity="0" />
+        </svg>
+        <span class="upload-btn-text">UPLOAD</span>
+    </button>
+    <span class="in-text">
+        Drag & Drop anywhere!
+    </span>
+</div>
+<span>
+  &nbsp;
+</span>
+
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+	let upload = document.getElementById("upload");
+
+	if (upload) {
+		let progress = 0,
+			strokeLen = 310,
+			startUpload = function(progressRect,elText) {
+				progress = 0;
+
+				let btnText = this.querySelector(elText);
+				if (btnText)
+					btnText.innerHTML = "0%";
+
+				this.disabled = true;
+				this.classList.remove("upload-btn-ready");
+				this.classList.add("upload-btn-running");
+
+				setTimeout(incProgress.bind(this,progressRect,elText),500);
+			},
+			incProgress = function(progressRect,elText){
+				let btnProgress = this.querySelector(progressRect),
+					btnText = this.querySelector(elText);
+
+				if (progress < 1) {
+					if (btnProgress) {
+						let strokeVal = progress * strokeLen,
+							dashVal = strokeLen - strokeVal;
+						btnProgress.setAttribute("stroke-dasharray",`${strokeVal} ${dashVal}`);
+						btnProgress.setAttribute("opacity","1");
+					}
+					if (btnText) {
+						let displayVal = Math.round(progress * 100);
+						btnText.innerHTML = `${displayVal}%`;
+					}
+					progress += 0.005;
+
+					let interval = 17;
+					setTimeout(incProgress.bind(this,progressRect,elText),interval);
+
+				} else {
+					this.classList.remove("upload-btn-running");
+					this.classList.add("upload-btn-done");
+
+					if (btnProgress)
+						btnProgress.setAttribute("stroke-dasharray",`${strokeLen} 0`);
+					if (btnText)
+						btnText.innerHTML = "&#10003;";
+
+					let timeout = 1500;
+					setTimeout(resetUpload.bind(this,progressRect,elText),timeout);
+				}
+			},
+			resetUpload = function(progressRect,elText) {
+				this.classList.remove("upload-btn-done");
+				this.classList.add("upload-btn-ready");
+				this.disabled = false;
+
+				let btnProgress = this.querySelector(progressRect),
+					btnText = this.querySelector(elText);
+
+				if (btnProgress) {
+					btnProgress.setAttribute("stroke-dasharray",`0 ${strokeLen}`);
+					btnProgress.setAttribute("opacity","0");
+				}
+				if (btnText)
+					btnText.innerHTML = "Upload";
+			};
+
+		upload.addEventListener("click",startUpload.bind(
+			upload,
+			".upload-btn-border rect",
+			".upload-btn-text"
+		));
+	}
+});
+
+</script>
+
+
+</body>
+</html>
