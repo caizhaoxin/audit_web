@@ -11,37 +11,91 @@
     <link rel="stylesheet" href="../../res/css/global.css">
     <link rel="stylesheet" href="../../res/css/styles.css">
     <link rel="stylesheet" href="../../res/css/czx.css">
+    <script src="../../res/js/apexcharts.js"></script>
+    <style>
+        #chart {
+            max-width: 650px;
+            margin: 35px auto;
+        }
+    </style>
 </head>
+<style>
+    .img-select img {
+        width: 500px;
+        height: 300px;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    html,
+    body {
+        height: 100%;
+        width: 100%;
+    }
+
+    .dialog-bg {
+        z-index: 999;
+        display: none;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.4);
+    }
+
+    .dialog-bg .img-box {
+        width: 1165px;
+        height: 650px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -582px;
+        margin-top: -340px;
+    }
+
+    .dialog-bg .img-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+</style>
 
 <body class="fly-full">
-
     <div class="fly-header layui-bg-black">
         <div>
             <div class="fly-header layui-bg-black">
-                <div class="layui-container">
-                    <ul class="layui-nav">
-                        <li class="layui-nav-item">
-                            <a href="../index.html">
-                                <i class="iconfont icon-jiaoliu"></i>
-                                &nbsp;HOMEPAGE
-                            </a>
-                        </li>
-                        <li class="layui-nav-item">
-                            <a href="uploadfilemanage.html">
-                                <i class="iconfont icon-iconmingxinganli"></i>
-                                &nbsp;RECENT ANALYSIS</a>
-                        </li>
-                        <li class="layui-nav-item layui-this">
-                            <a href="result.html">
-                                <i class="iconfont icon-ui"></i>
-                                &nbsp;RESULT
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                <ul class="layui-nav">
+                    <li class="layui-nav-item">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <img src="../../res/images/SYSU_logo.png" style="width: 40px; filter: brightness(100);">
+                        <span style="font-size: 20px;">&nbsp;应用审计平台&nbsp;&nbsp;&nbsp;</span>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="../index.html">
+                            <i class="iconfont icon-jiaoliu"></i>
+                            &nbsp;HOMEPAGE
+                        </a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="uploadfilemanage.html">
+                            <i class="iconfont icon-iconmingxinganli"></i>
+                            &nbsp;RECENT UPLOAD</a>
+                    </li>
+                    <li class="layui-nav-item layui-this">
+                        <a href="result.html">
+                            <i class="iconfont icon-ui"></i>
+                            &nbsp;RESULT
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
+
     <!-- <img src="../../res/images/icon/com.dragon.read.png" style="width: 100px; margin-left: 0%;"> -->
     <div class="layui-row">
         <div class="layui-col-xs12 layui-col-sm12 layui-col-md12">
@@ -56,7 +110,7 @@
     </div>
 
     <div class="layui-row">
-        <div class="layui-col-xs6 layui-col-sm6 layui-col-md2"">
+        <div class="layui-col-xs6 layui-col-sm6 layui-col-md2">
             <div class="layui-row">
                 <img class="img_center" src="../../res/images/screen/com.dragon.read/AUI.jpeg" style="width: 50%;">
             </div>
@@ -69,7 +123,8 @@
         </div>
         <div class="layui-col-xs6 layui-col-sm6 layui-col-md2">
             <div class="layui-row">
-                <img class="img_center" src="../../res/images/screen/com.dragon.read/can_not_click.png" style="width: 50%;">
+                <img class="img_center" src="../../res/images/screen/com.dragon.read/can_not_click.png"
+                    style="width: 50%;">
             </div>
             <div class="layui-row text_center">
                 <span>&nbsp;</span></br>
@@ -80,7 +135,8 @@
         </div>
         <div class="layui-col-xs6 layui-col-sm6 layui-col-md2">
             <div class="layui-row">
-                <img class="img_center" src="../../res/images/screen/com.dragon.read/fake_button.png" style="width: 50%;">
+                <img class="img_center" src="../../res/images/screen/com.dragon.read/fake_button.png"
+                    style="width: 50%;">
             </div>
             <div class="layui-row text_center">
                 <span>&nbsp;</span></br>
@@ -102,11 +158,11 @@
         </div>
         <div class="layui-col-xs6 layui-col-sm6 layui-col-md2">
             <div class="layui-row">
-                <img class="img_center" src="../../res/images/screen/com.dragon.read/no_close.jpg" style="width: 50%;">
+                <img class="img_center" src="../../res/images/screen/com.dragon.read/AUI02.jpg" style="width: 50%;">
             </div>
             <div class="layui-row text_center">
                 <span>&nbsp;</span></br>
-                <span><b>无关闭按钮</b></span></br>
+                <span><b>诱导界面</b></span></br>
                 <span>com.dragon.read.fresh_man</span></br>
                 <span></span></br>
             </div>
@@ -123,143 +179,109 @@
             </div>
         </div>
     </div>
+    <div class="dialog-bg" id="dialog-bg">
+        <div class="img-box" id="img-box">
+            <img src="">
+        </div>
+    </div>
+
+    <div class="layui-row">
+        <div class="layui-col-xs12 layui-col-sm12 layui-col-md12 text_center">
+            <span>&nbsp;</span></br>
+            <span>&nbsp;</span></br>
+            <span style="font-size: 25px;"><b>类别分布图</span>
+        </div>
+    </div>
+    <div id="chart"></div>
+
+    <div class="fly-footer">
+        <img src="../../res/images/zhuzhanLOGO.png" style="width: 200px; filter: brightness(0);">
+        <p><a href="http://fly.layui.com/" target="_blank">应用审计平台</a> 2023 &copy; <a href="http://www.layui.com/"
+                target="_blank">GOSEC 出品</a></p>
+    </div>
+
+    <script>
+        var colors = [
+            '#008FFB',
+            '#00E396',
+            '#FEB019',
+            '#FF4560',
+            '#775DD0',
+            '#546E7A',
+            '#26a69a',
+            '#D10CE8'
+        ]
+
+        var options = {
+            series: [{
+                data: [21, 22, 10, 28, 16, 21, 13]
+            }],
+            chart: {
+                height: 350,
+                type: 'bar',
+                events: {
+                    click: function (chart, w, e) {
+                        // console.log(chart, w, e)
+                    }
+                }
+            },
+            colors: colors,
+            plotOptions: {
+                bar: {
+                    columnWidth: '45%',
+                    distributed: true,
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            legend: {
+                show: false
+            },
+            xaxis: {
+                categories: [
+                    ['诱导界面'],
+                    ['关闭按钮', '无法点击'],
+                    ['虚假按钮'],
+                    ['无关闭按钮'],
+                    ['诱导跳转'],
+                    ['鱼目混珠'],
+                    ['操作繁杂', '意在劝退']
+                ],
+                labels: {
+                    style: {
+                        colors: colors,
+                        fontSize: '12px'
+                    }
+                }
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
 
 
-    <!-- <div class="fly-main" style="overflow: hidden;">
+    </script>
+    <script src="../../res/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+        $("#dialog-bg").on("click", function () {
+            $(this).hide();//
+        });
 
-        <ul class="fly-case-list">
-            <li data-id="123">
-                <a class="fly-case-img" href="http://fly.layui.com/" target="_blank">
-                    <img src="../../res/images/fly.jpg" alt="Fly社区">
-                    <cite class="layui-btn layui-btn-primary layui-btn-small">去围观</cite>
-                </a>
-                <h2><a href="http://fly.layui.com/" target="_blank">Fly社区</a></h2>
-                <p class="fly-case-desc">Fly 社区是 layui 的官方社区，全站的前端层面基于 Layui 风格编写，轻量而简洁，并且模版已经开源，可用于极简社区模板。</p>
-                <div class="fly-case-info">
-                    <a href="../user/home.html" class="fly-case-user" target="_blank"><img
-                            src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"></a>
-                    <p class="layui-elip" style="font-size: 12px;"><span style="color: #666;">贤心</span> 2017-11-30</p>
-                    <p>获得<a class="fly-case-nums fly-case-active" href="javascript:;" data-type="showPraise"
-                            style=" padding:0 5px; color: #01AAED;">666</a>个赞</p>
-                    <button class="layui-btn layui-btn-primary fly-case-active" data-type="praise">点赞</button>
-                </div>
-            </li>
-            <li data-id="123">
-                <a class="fly-case-img" href="http://fly.layui.com/" target="_blank">
-                    <img src="../../res/images/fly.jpg" alt="Fly社区">
-                    <cite class="layui-btn layui-btn-primary layui-btn-small">去围观</cite>
-                </a>
-                <h2><a href="http://fly.layui.com/" target="_blank">Fly社区</a></h2>
-                <p class="fly-case-desc">Fly 社区是 layui 的官方社区，全站的前端层面基于 Layui 风格编写，轻量而简洁，并且模版已经开源，可用于极简社区模板。</p>
-                <div class="fly-case-info">
-                    <a href="../user/home.html" class="fly-case-user" target="_blank"><img
-                            src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"></a>
-                    <p class="layui-elip" style="font-size: 12px;"><span style="color: #666;">贤心</span> 2017-11-30</p>
-                    <p>获得<a class="fly-case-nums fly-case-active" href="javascript:;" data-type="showPraise"
-                            style=" padding:0 5px; color: #01AAED;">666</a>个赞</p>
-                    <button class="layui-btn  fly-case-active" data-type="praise">已赞</button>
-                </div>
-            </li>
-            <li data-id="123">
-                <a class="fly-case-img" href="http://fly.layui.com/" target="_blank">
-                    <img src="../../res/images/fly.jpg" alt="Fly社区">
-                    <cite class="layui-btn layui-btn-primary layui-btn-small">去围观</cite>
-                </a>
-                <h2><a href="http://fly.layui.com/" target="_blank">Fly社区</a></h2>
-                <p class="fly-case-desc">Fly 社区是 layui 的官方社区，全站的前端层面基于 Layui 风格编写，轻量而简洁，并且模版已经开源，可用于极简社区模板。</p>
-                <div class="fly-case-info">
-                    <a href="../user/home.html" class="fly-case-user" target="_blank"><img
-                            src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"></a>
-                    <p class="layui-elip" style="font-size: 12px;"><span style="color: #666;">贤心</span> 2017-11-30</p>
-                    <p>获得<a class="fly-case-nums fly-case-active" href="javascript:;" data-type="showPraise"
-                            style=" padding:0 5px; color: #01AAED;">666</a>个赞</p>
-                    <button class="layui-btn layui-btn-primary fly-case-active" data-type="praise">点赞</button>
-                </div>
-            </li>
-            <li data-id="123">
-                <a class="fly-case-img" href="http://fly.layui.com/" target="_blank">
-                    <img src="../../res/images/fly.jpg" alt="Fly社区">
-                    <cite class="layui-btn layui-btn-primary layui-btn-small">去围观</cite>
-                </a>
-                <h2><a href="http://fly.layui.com/" target="_blank">Fly社区</a></h2>
-                <p class="fly-case-desc">Fly 社区是 layui 的官方社区，全站的前端层面基于 Layui 风格编写，轻量而简洁，并且模版已经开源，可用于极简社区模板。</p>
-                <div class="fly-case-info">
-                    <a href="../user/home.html" class="fly-case-user" target="_blank"><img
-                            src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"></a>
-                    <p class="layui-elip" style="font-size: 12px;"><span style="color: #666;">贤心</span> 2017-11-30</p>
-                    <p>获得<a class="fly-case-nums fly-case-active" href="javascript:;" data-type="showPraise"
-                            style=" padding:0 5px; color: #01AAED;">666</a>个赞</p>
-                    <button class="layui-btn layui-btn-primary fly-case-active" data-type="praise">点赞</button>
-                </div>
-            </li>
-            <li data-id="123">
-                <a class="fly-case-img" href="http://fly.layui.com/" target="_blank">
-                    <img src="../../res/images/fly.jpg" alt="Fly社区">
-                    <cite class="layui-btn layui-btn-primary layui-btn-small">去围观</cite>
-                </a>
-                <h2><a href="http://fly.layui.com/" target="_blank">Fly社区</a></h2>
-                <p class="fly-case-desc">Fly 社区是 layui 的官方社区，全站的前端层面基于 Layui 风格编写，轻量而简洁，并且模版已经开源，可用于极简社区模板。</p>
-                <div class="fly-case-info">
-                    <a href="../user/home.html" class="fly-case-user" target="_blank"><img
-                            src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"></a>
-                    <p class="layui-elip" style="font-size: 12px;"><span style="color: #666;">贤心</span> 2017-11-30</p>
-                    <p>获得<a class="fly-case-nums fly-case-active" href="javascript:;" data-type="showPraise"
-                            style=" padding:0 5px; color: #01AAED;">666</a>个赞</p>
-                    <button class="layui-btn layui-btn-primary fly-case-active" data-type="praise">点赞</button>
-                </div>
-            </li>
-            <li data-id="123">
-                <a class="fly-case-img" href="http://fly.layui.com/" target="_blank">
-                    <img src="../../res/images/fly.jpg" alt="Fly社区">
-                    <cite class="layui-btn layui-btn-primary layui-btn-small">去围观</cite>
-                </a>
-                <h2><a href="http://fly.layui.com/" target="_blank">Fly社区</a></h2>
-                <p class="fly-case-desc">Fly 社区是 layui 的官方社区，全站的前端层面基于 Layui 风格编写，轻量而简洁，并且模版已经开源，可用于极简社区模板。</p>
-                <div class="fly-case-info">
-                    <a href="../user/home.html" class="fly-case-user" target="_blank"><img
-                            src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"></a>
-                    <p class="layui-elip" style="font-size: 12px;"><span style="color: #666;">贤心</span> 2017-11-30</p>
-                    <p>获得<a class="fly-case-nums fly-case-active" href="javascript:;" data-type="showPraise"
-                            style=" padding:0 5px; color: #01AAED;">666</a>个赞</p>
-                    <button class="layui-btn layui-btn-primary fly-case-active" data-type="praise">点赞</button>
-                </div>
-            </li>
-            <li data-id="123">
-                <a class="fly-case-img" href="http://fly.layui.com/" target="_blank">
-                    <img src="../../res/images/fly.jpg" alt="Fly社区">
-                    <cite class="layui-btn layui-btn-primary layui-btn-small">去围观</cite>
-                </a>
-                <h2><a href="http://fly.layui.com/" target="_blank">Fly社区</a></h2>
-                <p class="fly-case-desc">Fly 社区是 layui 的官方社区，全站的前端层面基于 Layui 风格编写，轻量而简洁，并且模版已经开源，可用于极简社区模板。</p>
-                <div class="fly-case-info">
-                    <a href="../user/home.html" class="fly-case-user" target="_blank"><img
-                            src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"></a>
-                    <p class="layui-elip" style="font-size: 12px;"><span style="color: #666;">贤心</span> 2017-11-30</p>
-                    <p>获得<a class="fly-case-nums fly-case-active" href="javascript:;" data-type="showPraise"
-                            style=" padding:0 5px; color: #01AAED;">666</a>个赞</p>
-                    <button class="layui-btn layui-btn-primary fly-case-active" data-type="praise">点赞</button>
-                </div>
-            </li>
-            <li data-id="123">
-                <a class="fly-case-img" href="http://fly.layui.com/" target="_blank">
-                    <img src="../../res/images/fly.jpg" alt="Fly社区">
-                    <cite class="layui-btn layui-btn-primary layui-btn-small">去围观</cite>
-                </a>
-                <h2><a href="http://fly.layui.com/" target="_blank">Fly社区</a></h2>
-                <p class="fly-case-desc">Fly 社区是 layui 的官方社区，全站的前端层面基于 Layui 风格编写，轻量而简洁，并且模版已经开源，可用于极简社区模板。</p>
-                <div class="fly-case-info">
-                    <a href="../user/home.html" class="fly-case-user" target="_blank"><img
-                            src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"></a>
-                    <p class="layui-elip" style="font-size: 12px;"><span style="color: #666;">贤心</span> 2017-11-30</p>
-                    <p>获得<a class="fly-case-nums fly-case-active" href="javascript:;" data-type="showPraise"
-                            style=" padding:0 5px; color: #01AAED;">666</a>个赞</p>
-                    <button class="layui-btn layui-btn-primary fly-case-active" data-type="praise">点赞</button>
-                </div>
-            </li>
-        </ul>
-
-    </div> -->
-
+        var img_tag_arr = document.querySelectorAll('img')
+        for (var i = 0; i < img_tag_arr.length; i++) {
+            if (img_tag_arr[i].className !== 'img_center') continue
+            //无论点击哪一个img弹出层都会展示相应的图片。
+            img_tag_arr[i].addEventListener("click", function () {
+                $(this).each(function () {
+                    var $this = $(this);
+                    var $img = $this.attr("src");//获取当前点击img的src的值
+                    $("#img-box").find("img").attr("src", $img);//将获取的当前点击img的src赋值到弹出层的图片的src
+                    $("#dialog-bg").show();//弹出层显示
+                });
+            });
+        }
+    </script>
 </body>
 
 </html>

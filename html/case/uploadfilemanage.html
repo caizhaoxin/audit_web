@@ -101,31 +101,32 @@
 <body ng-app="app" ng-controller="cont">
   <div>
     <div class="fly-header layui-bg-black">
-      <div class="layui-container">
-        <div>
-          <div class="fly-header layui-bg-black">
-            <div class="layui-container">
-              <ul class="layui-nav">
-                <li class="layui-nav-item">
-                  <a href="../index.html">
-                    <i class="iconfont icon-jiaoliu"></i>
-                    &nbsp;HOMEPAGE
-                  </a>
-                </li>
-                <li class="layui-nav-item layui-this">
-                  <a href="uploadfilemanage.html">
-                    <i class="iconfont icon-iconmingxinganli"></i>
-                    &nbsp;RECENT ANALYSIS</a>
-                </li>
-                <li class="layui-nav-item">
-                  <a href="result.html">
-                    <i class="iconfont icon-ui"></i>
-                    &nbsp;RESULT
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
+      <div>
+        <div class="fly-header layui-bg-black">
+          <ul class="layui-nav">
+            <li class="layui-nav-item">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <img src="../../res/images/SYSU_logo.png" style="width: 40px; filter: brightness(100);">
+              <span style="font-size: 20px;">&nbsp;应用审计平台&nbsp;&nbsp;&nbsp;</span>
+            </li>
+            <li class="layui-nav-item">
+              <a href="../index.html">
+                <i class="iconfont icon-jiaoliu"></i>
+                &nbsp;HOMEPAGE
+              </a>
+            </li>
+            <li class="layui-nav-item layui-this">
+              <a href="uploadfilemanage.html">
+                <i class="iconfont icon-iconmingxinganli"></i>
+                &nbsp;RECENT UPLOAD</a>
+            </li>
+            <li class="layui-nav-item">
+              <a href="result.html">
+                <i class="iconfont icon-ui"></i>
+                &nbsp;RESULT
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -148,21 +149,48 @@
             <span></span></br>
           </div>
         </td>
-        <td>{{item.app_name}}</td>
+        <td>
+          {{item.package_name}}.apk
+        </td>
         <td>{{item.hash}}</td>
         <td>{{item.date}}</td>
-        <td ng-style="item.status === 'AUDITTING' ? { 'color': 'red', 'font-weight': 'bold'} : {'color': 'green', 'font-weight': 'bold'}">{{item.status}}</td>
+        <td>
+          <div
+            ng-style="item.status === 'AUDITTING' ? { 'color': 'red', 'font-weight': 'bold'} : {'color': 'green', 'font-weight': 'bold'}">
+            {{item.status}}
+          </div>
+          <div ng-style="item.status === 'FINISH' ? {} : {'display': 'none'}">
+            <span style="font-weight: bold; font-size: 0.1px;">
+              &nbsp
+            </span>
+          </div>
+          <div ng-style="item.status === 'FINISH' ? {} : {'display': 'none'}">
+            <a href="result.html" class="layui-btn layui-btn-sm">
+              <span style="font-weight: bold; font-size: 15px;">
+                see&nbsp;result
+              </span>
+            </a>
+          </div>
+        </td>
     </table>
     <script>
       var myApp = angular.module("app", ["ui.router"]);
       myApp.controller('cont', function ($scope, $http, $state) {
         $scope.td = [
-          { id: '0', package_name: "com.dragon.read", version: "5.4.7.32", app_name: "番茄免费小说", hash: "9rNb290A7f", date: "May 30, 2023, 3:33 a.m.", status: "AUDITTING" },
-          { id: '1', package_name: "com.f100.android", version: "5.4.0", app_name: "幸福里", hash: "R08dNpIwEC", date: "May 30, 2023, 3:33 a.m.", status: "AUDITTING" },
-          { id: '2', package_name: "com.gorgeous.lite", version: "4.6.0", app_name: "轻颜相机", hash: "s7f8rfgugjtn", date: "May 30, 2023, 3:33 a.m.", status: "FINISH" },
+          { id: '0', package_name: "tv.danmaku.bili", version: "6.46.0", app_name: "哔哩哔哩", hash: "SD8JO78912", date: "June 02, 2023, 04:55 a.m.", status: "AUDITTING" },
+          { id: '1', package_name: "com.dianping.v1", version: "10.52.6", app_name: "大众点评", hash: "67ASTH3G6H", date: "June 01, 2023, 03:33 a.m.", status: "AUDITTING" },
+          { id: '2', package_name: "com.dragon.read", version: "5.4.7.32", app_name: "番茄免费小说", hash: "9rNb290A7f", date: "May 30, 2023, 09:07 p.m.", status: "AUDITTING" },
+          { id: '3', package_name: "com.f100.android", version: "5.4.0", app_name: "幸福里", hash: "R08dNpIwEC", date: "May 28, 2023, 04:37 p.m.", status: "AUDITTING" },
+          { id: '4', package_name: "com.gorgeous.lite", version: "4.6.0", app_name: "轻颜相机", hash: "s7f8rfgugjtn", date: "May 27, 2023, 07:08 a.m.", status: "FINISH" },
+
         ]
       })
     </script>
+    <div class="fly-footer">
+      <img src="../../res/images/zhuzhanLOGO.png" style="width: 200px; filter: brightness(0);">
+      <p><a href="http://fly.layui.com/" target="_blank">应用审计平台</a> 2023 &copy; <a href="http://www.layui.com/"
+          target="_blank">GOSEC 出品</a></p>
+    </div>
 </body>
 
 </html>
